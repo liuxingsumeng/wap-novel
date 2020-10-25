@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小说</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="小说">
+    <meta name="description" content="小说">
+    <link rel="stylesheet" type="text/css" href="css/novel.css">
+</head>
+<body>
+    <!--主体-->
+    <div id="app">
+        <div class="about-main">
+            <div class="about-box">
+                <div class="about-tit">{{title}}</div>
+                <div class="about-introduce">
+                    <p v-for="(item,index) in introduce" key="index">{{item}}</p>
+                </div>
+                <div class="about-chapter">{{chapter}}</div>
+                <div class="about-cen">
+                    <div class="about-model centre">
+                        <p>{{narrator}}</p>
+                    </div>
+                    <div class="about-model left">
+                        <p>{{content.d1}}</p>
+                    </div>
+                    <div class="about-model right">
+                        <p>{{content.d2}}</p>
+                    </div>
+                </div>
+                <div class="about-wait">
+                    <span>-----------</span>
+                    <div>未完待续</div>
+                    <span>-----------</span>
+                </div>
+                <!-- <div class="about-foot-main">
+                    <div class="previous-page">上一页</div>
+                    <div class="next-page">下一页</div>
+                </div> -->
+                <!-- <div class="about-tip" :class="{ hides: tipActive }" @click="aboutTip()">
+                    点击进入上次浏览的页面
+                </div>
+                <div class="about-pos" :class="{ hides: posActive }">
+                    上次浏览到了这里...
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!--js-->
+    <script type="text/javascript" src="js/vue.min.js"></script>
+    <script type="text/javascript" src="util/moke/01.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                tipActive:false, // 是否显示 提示
+                posActive: false, // 是否显示 浏览位置
+                timeFun:'', // 定时器 提示
+                timeFun1:'', // 定时器 浏览位置
+                title: '', // 标题
+                introduce: [], // 简介
+                chapter: '', // 章节
+                narrator: '', // 旁白内容
+                content: '' // 对话内容
+            },
+            created() {
+                // 初始数据
+                this.initDate()
+            },
+            mounted() {
+                // // 进入页面提示 提示
+                // this.initTip()
+                // // 进入页面提示 浏览位置
+                // this.initPosTip()
+                // // 初始位置
+                // this.initPos()
+            },
+            destroyed(){
+                // // 清除定时器 提示
+                // clearInterval(this.timeFun)
+                // // 清除定时器 浏览位置
+                // clearInterval(this.timeFun1)
+            },
+            methods: {
+                // 提示
+                aboutTip(){
+                    alert('tip')
+                    // 清除定时器
+                    clearInterval(this.timeFun)
+                },
+                // 进入页面提示
+                initTip(){
+                    this.timeFun=setTimeout(()=>{
+                        this.tipActive=true
+                    },5000)
+                },
+                // 位置提示
+                initPosTip(){
+                    this.timeFun1=setTimeout(()=>{
+                        this.posActive=true
+                    },3000)
+                },
+                // 初始位置
+                initPos() {
+                    let top = (document.body.scrollTop || document.documentElement.scrollTop || window.pageXOffset)
+                    // console.log(top)
+                    // document.body.scrollTop=200
+                },
+                // 初始数据
+                initDate(){
+                    let data=data01
+                    this.title=data01.title
+                    this.introduce=data01.introduce
+                    this.chapter=data01.chapter
+                    this.narrator=data01.narrator
+                    this.content=data01.content
+                }
+            }
+        })
+    </script>
+</body>
+</html>
