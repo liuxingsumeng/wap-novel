@@ -19,8 +19,15 @@
                 </div>
                 <div class="about-chapter">{{chapter}}</div>
                 <div class="about-cen">
-                    <div class="about-model centre">
-                        <p>{{narrator}}</p>
+                    <div class="about-model centre c-one">
+                        <div v-for="(item,index) in narr" key="index" class="c-one-div">
+                            {{item}}
+                        </div>
+                    </div>
+                    <div class="about-model centre c-one">
+                        <div v-for="(item,index) in narrator" key="index" class="c-one-div">
+                            {{item}}
+                        </div>
                     </div>
                     <div class="about-model left">
                         <p>{{content.d1}}</p>
@@ -61,7 +68,8 @@
                 title: '', // 标题
                 introduce: [], // 简介
                 chapter: '', // 章节
-                narrator: '', // 旁白内容
+                narr:[],
+                narrator: [], // 旁白内容
                 content: '' // 对话内容
             },
             created() {
@@ -113,6 +121,7 @@
                     this.title=data01.title
                     this.introduce=data01.introduce
                     this.chapter=data01.chapter
+                    this.narr=data01.narr
                     this.narrator=data01.narrator
                     this.content=data01.content
                 }
